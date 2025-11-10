@@ -401,13 +401,113 @@ body {
 }
 
 /* ===== QUESTIONNAIRE PAGES ===== */
-.questionnaire-container {
-    width: 100%;
-    max-width: 800px;
+/* When are you free time selects Q1 */
+.time-select-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.time-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.time-option {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.time-option:hover {
+  background-color: #eef5ff;
+}
+
+.time-option.selected {
+  background-color: #4a90e2;
+  color: white;
+  border-color: #4a90e2;
+}
+
+.selected-tags {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tag {
+  background-color: #4a90e2;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+/* How social are you feeling Q2*/
+.summary-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.summary-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.saved-times {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.social-scale {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.emoji-group {
     display: flex;
     flex-direction: column;
-    gap: 40px;
     align-items: center;
+}
+
+.emoji-btn {
+    font-size: 2.8rem;
+    background: none;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
+    padding: 10px;
+}
+
+.emoji-btn:hover {
+    transform: scale(1.2);
+}
+
+.emoji-btn.selected {
+    border-color: #4a90e2;
+    background-color: #eaf2ff;
+}
+
+.emoji-label {
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 1rem;
 }
 
 /* ===== PROGRESS INDICATOR ===== */

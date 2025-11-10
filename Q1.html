@@ -48,6 +48,26 @@
                 
                 <h1 class="question-title">When are you free?</h1>
 
+                <!-- Multi-Select time dropdown-->
+                <div class="time-select-container">
+                <label>Select all hours you’re available:</label>
+                <div class="time-list" id="timeList">
+                    <div class="time-option" data-value="8am">8:00 AM – 9:00 AM</div>
+                    <div class="time-option" data-value="9am">9:00 AM – 10:00 AM</div>
+                    <div class="time-option" data-value="10am">10:00 AM – 11:00 AM</div>
+                    <div class="time-option" data-value="11am">11:00 AM – 12:00 PM</div>
+                    <div class="time-option" data-value="12pm">12:00 PM – 1:00 PM</div>
+                    <div class="time-option" data-value="1pm">1:00 PM – 2:00 PM</div>
+                    <div class="time-option" data-value="2pm">2:00 PM – 3:00 PM</div>
+                    <div class="time-option" data-value="3pm">3:00 PM – 4:00 PM</div>
+                    <div class="time-option" data-value="4pm">4:00 PM – 5:00 PM</div>
+                    <div class="time-option" data-value="5pm">5:00 PM – 6:00 PM</div>
+                </div>
+
+                <div id="selected-tags" class="selected-tags"></div>
+                </div>
+
+
                 <div class="nav-buttons">
                     <button class="btn-nav btn-previous" onclick="window.location.href='index.html'">
                         Previous
@@ -63,7 +83,11 @@
     <script>
         const profileButton = document.getElementById('profileButton');
         const dropdownMenu = document.getElementById('dropdownMenu');
+        const timeList = document.getElementById('timeList');
+        const selectedTags = document.getElementById('selected-tags');
+        let selectedValues = [];
 
+        // --- Profile dropdown ---
         profileButton.addEventListener('click', function(e) {
             e.stopPropagation();
             dropdownMenu.classList.toggle('show');
@@ -75,10 +99,41 @@
             }
         });
 
+        // --- Theme toggle ---
         const themeSwitch = document.getElementById('theme-switch');
         themeSwitch.addEventListener('change', function() {
             console.log('Theme toggle clicked:', this.checked ? 'Dark' : 'Light');
         });
+
+        // --- Clickable time selection ---
+        timeList.addEventListener('click', (e) => {
+            const item = e.target.closest('.time-option');
+            if (!item) return;
+
+            const value = item.dataset.value;
+            const isSelected = selectedValues.includes(value);
+
+            if (isSelected) {
+                selectedValues = selectedValues.filter(v => v !== value);
+                item.classList.remove('selected');
+            } else {
+                selectedValues.push(value);
+                item.classList.add('selected');
+            }
+
+            updateTags();
+        });
+
+        function updateTags() {
+            selectedTags.innerHTML = '';
+            selectedValues.forEach(val => {
+                const opt = document.querySelector(`.time-option[data-value="${val}"]`);
+                const tag = document.createElement('span');
+                tag.className = 'tag';
+                tag.textContent = opt.textContent;
+                selectedTags.appendChild(tag);
+            });
+        }
     </script>
 </body>
 </html>

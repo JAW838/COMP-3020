@@ -48,6 +48,21 @@
 
                 <h1 class="question-title">How social are you feeling?</h1>
 
+                <div class="social-scale">
+                    <div class="emoji-group">
+                        <button class="emoji-btn" data-value="not_social" title="Not social">😞</button>
+                        <div class="emoji-label">Not Social</div>
+                    </div>
+                    <div class="emoji-group">
+                        <button class="emoji-btn" data-value="neutral" title="Neutral">😐</button>
+                        <div class="emoji-label">Neutral</div>
+                    </div>
+                    <div class="emoji-group">
+                        <button class="emoji-btn" data-value="social" title="Social">😄</button>
+                        <div class="emoji-label">Social</div>
+                    </div>
+                </div>
+
                 <div class="nav-buttons">
                     <button class="btn-nav btn-previous" onclick="window.location.href='q1.html'">
                         Previous
@@ -63,7 +78,8 @@
     <script>
         const profileButton = document.getElementById('profileButton');
         const dropdownMenu = document.getElementById('dropdownMenu');
-
+        const emojiButtons = document.querySelectorAll('.emoji-btn');
+        let selectedMood = localStorage.getItem('socialLevel') || null;
         profileButton.addEventListener('click', function(e) {
             e.stopPropagation();
             dropdownMenu.classList.toggle('show');
@@ -78,6 +94,21 @@
         const themeSwitch = document.getElementById('theme-switch');
         themeSwitch.addEventListener('change', function() {
             console.log('Theme toggle clicked:', this.checked ? 'Dark' : 'Light');
+        });
+
+        // --- Emoji selection ---
+        // Restore selection if it was saved previously
+        if (selectedMood) {
+            const btn = document.querySelector(`.emoji-btn[data-value="${selectedMood}"]`);
+            if (btn) btn.classList.add('selected');
+        }
+
+        emojiButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                emojiButtons.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedMood = btn.dataset.value;
+            });
         });
     </script>
 </body>
