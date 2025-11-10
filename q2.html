@@ -5,10 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gap Filler - Home</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* How social are you feeling Q2*/
+        .summary-container {
+            margin-top: 20px;
+            text-align: center;
+        }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        .summary-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .saved-times {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .social-scale {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .emoji-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .emoji-btn {
+            font-size: 2.8rem;
+            background: none;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
+            padding: 10px;
+        }
+
+        .emoji-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .emoji-btn.selected {
+            border-color: #4a90e2;
+            background-color: #eaf2ff;
+        }
+
+        .emoji-label {
+            margin-top: 8px;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+    </style>
 </head>
 <body> 
     <div class="container">
@@ -40,14 +95,14 @@
             <div class="questionnaire-container">
 
                 <div class="progress-indicator">
-                    <div class="progress-circle active" onclick="window.location.href='q1.html'">1</div>
-                    <div class="progress-circle" onclick="window.location.href='q2.html'">2</div>
+                    <div class="progress-circle" onclick="window.location.href='q1.html'">1</div>
+                    <div class="progress-circle active" onclick="window.location.href='q2.html'">2</div>
                     <div class="progress-circle" onclick="window.location.href='q3.html'">3</div>
                     <div class="progress-circle" onclick="window.location.href='q4.html'">4</div>
                 </div>
 
                 <h1 class="question-title">How social are you feeling?</h1>
-
+                
                 <div class="social-scale">
                     <div class="emoji-group">
                         <button class="emoji-btn" data-value="not_social" title="Not social">😞</button>
@@ -73,13 +128,25 @@
                 </div>
             </div>
         </main>
+
+        <footer class="footer">
+
+        </footer>
     </div>
 
     <script>
         const profileButton = document.getElementById('profileButton');
         const dropdownMenu = document.getElementById('dropdownMenu');
         const emojiButtons = document.querySelectorAll('.emoji-btn');
+
+        // Restore previous selection (if it exists)
         let selectedMood = localStorage.getItem('socialLevel') || null;
+        if (selectedMood) {
+            const btn = document.querySelector(`.emoji-btn[data-value="${selectedMood}"]`);
+            if (btn) btn.classList.add('selected');
+        }
+
+        // Toggle dropdown menu
         profileButton.addEventListener('click', function(e) {
             e.stopPropagation();
             dropdownMenu.classList.toggle('show');
@@ -91,24 +158,21 @@
             }
         });
 
-        const themeSwitch = document.getElementById('theme-switch');
-        themeSwitch.addEventListener('change', function() {
-            console.log('Theme toggle clicked:', this.checked ? 'Dark' : 'Light');
-        });
-
-        // --- Emoji selection ---
-        // Restore selection if it was saved previously
-        if (selectedMood) {
-            const btn = document.querySelector(`.emoji-btn[data-value="${selectedMood}"]`);
-            if (btn) btn.classList.add('selected');
-        }
-
+        // Handle emoji selection
         emojiButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 emojiButtons.forEach(b => b.classList.remove('selected'));
                 btn.classList.add('selected');
                 selectedMood = btn.dataset.value;
+                // Save selection to localStorage
+                localStorage.setItem('socialLevel', selectedMood);
             });
+        });
+
+        // Theme toggle (for future use)
+        const themeSwitch = document.getElementById('theme-switch');
+        themeSwitch.addEventListener('change', function() {
+            console.log('Theme toggle clicked:', this.checked ? 'Dark' : 'Light');
         });
     </script>
 </body>

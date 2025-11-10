@@ -1,139 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gap Filler - Home</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gap Filler - Home</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Time slots grid — centered inside the box */
+    .time-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    align-content: center; /* vertical centering inside grid */
+    max-height: 375px; /* allow scrolling if needed */
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fafafa;
+    width: 550px;
+    }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    .time-slot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .time-slot label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 0.9em;
+    }
+
+    .time-slot input[type="radio"] {
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      border: 2px solid #333;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .time-slot input[type="radio"]:checked {
+      background-color: #6b4423;
+      border: 3px solid #006eb5;
+      box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+    }
+
+    /* Replicating this code for :hover option so that hovering over the selected option doesn't change it.*/
+    .time-slot input[type="radio"]:checked:hover {
+      background-color: #6b4423;
+      border: 3px solid #006eb5;
+      box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+    }
+
+
+    .time-slot input[type="radio"]:hover {
+      background-color: #ffb81c;
+      border: 3px solid #006eb5;
+      box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .profile-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .dropdown-menu.show {
+      display: block;
+    }
+
+    .dropdown-item {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
 </head>
-<body> 
-    <div class="container">
-        <header class="header">
-            <div class="logo">Gap Filler</div>
-            <div class="header-icons">
-                <a href="index.html" class="icon-link" title="Home">
-                    <span class="icon">🏠</span>
-                </a>
-                <div class="theme-toggle">
-                    <input type="checkbox" id="theme-switch" class="theme-switch-input">
-                    <label for="theme-switch" class="theme-switch-label">
-                        <span class="theme-icon sun">☀️</span>
-                        <span class="theme-icon moon">🌙</span>
-                    </label>
-                </div>
-                <div class="profile-dropdown">
-                    <button class="icon profile-icon" id="profileButton">
-                        👤
-                    </button>
-                    <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="index.html" class="dropdown-item">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </header>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">Gap Filler</div>
+      <div class="header-icons">
+        <a href="index.html" class="icon-link" title="Home">🏠</a>
+        <div class="theme-toggle">
+          <input type="checkbox" id="theme-switch" class="theme-switch-input" />
+          <label for="theme-switch" class="theme-switch-label">
+            <span class="theme-icon sun">☀️</span>
+            <span class="theme-icon moon">🌙</span>
+          </label>
+        </div>
+        <div class="profile-dropdown">
+          <button class="icon profile-icon" id="profileButton">👤</button>
+          <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html" class="dropdown-item">Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
-        <main class="main-content">
-            <div class="questionnaire-container">
+    <main class="main-content">
+      <div class="questionnaire-container">
+        <div class="progress-indicator">
+          <div
+            class="progress-circle active"
+            onclick="window.location.href='q1.html'"
+          >
+            1
+          </div>
+          <div
+            class="progress-circle"
+            onclick="window.location.href='q2.html'"
+          >
+            2
+          </div>
+          <div
+            class="progress-circle"
+            onclick="window.location.href='q3.html'"
+          >
+            3
+          </div>
+          <div
+            class="progress-circle"
+            onclick="window.location.href='q4.html'"
+          >
+            4
+          </div>
+        </div>
 
-                <div class="progress-indicator">
-                    <div class="progress-circle active" onclick="window.location.href='q1.html'">1</div>
-                    <div class="progress-circle" onclick="window.location.href='q2.html'">2</div>
-                    <div class="progress-circle" onclick="window.location.href='q3.html'">3</div>
-                    <div class="progress-circle" onclick="window.location.href='q4.html'">4</div>
-                </div>
-                
-                <h1 class="question-title">When are you free?</h1>
+        <h1 class="question-title">When are you free?</h1>
 
-                <!-- Multi-Select time dropdown-->
-                <div class="time-select-container">
-                <label>Select all hours you’re available:</label>
-                <div class="time-list" id="timeList">
-                    <div class="time-option" data-value="8am">8:00 AM – 9:00 AM</div>
-                    <div class="time-option" data-value="9am">9:00 AM – 10:00 AM</div>
-                    <div class="time-option" data-value="10am">10:00 AM – 11:00 AM</div>
-                    <div class="time-option" data-value="11am">11:00 AM – 12:00 PM</div>
-                    <div class="time-option" data-value="12pm">12:00 PM – 1:00 PM</div>
-                    <div class="time-option" data-value="1pm">1:00 PM – 2:00 PM</div>
-                    <div class="time-option" data-value="2pm">2:00 PM – 3:00 PM</div>
-                    <div class="time-option" data-value="3pm">3:00 PM – 4:00 PM</div>
-                    <div class="time-option" data-value="4pm">4:00 PM – 5:00 PM</div>
-                    <div class="time-option" data-value="5pm">5:00 PM – 6:00 PM</div>
-                </div>
+        <form id="timeForm">
+          <div class="time-selection" id="timeSelection"></div>
+        </form>
 
-                <div id="selected-tags" class="selected-tags"></div>
-                </div>
+        <div class="nav-buttons">
+          <button
+            class="btn-nav btn-previous"
+            onclick="window.location.href='index.html'"
+          >
+            Previous
+          </button>
+          <button
+            class="btn-nav btn-next"
+            onclick="window.location.href='q2.html'"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
 
+    </footer>
 
-                <div class="nav-buttons">
-                    <button class="btn-nav btn-previous" onclick="window.location.href='index.html'">
-                        Previous
-                    </button>
-                    <button class="btn-nav btn-next" onclick="window.location.href='q2.html'">
-                        Next
-                    </button>
-                </div>
-            </div>
-        </main>
-    </div>
+  </div>
 
-    <script>
-        const profileButton = document.getElementById('profileButton');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        const timeList = document.getElementById('timeList');
-        const selectedTags = document.getElementById('selected-tags');
-        let selectedValues = [];
+    
 
-        // --- Profile dropdown ---
-        profileButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropdownMenu.classList.toggle('show');
-        });
+  <script>
+    // Generate 30-min intervals from 8:00 AM to 4:00 AM
+    const start = 8; // 8 AM
+    const end = 16; // 4 PM
+    const container = document.getElementById("timeSelection");
 
-        document.addEventListener('click', function(e) {
-            if (!profileButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.classList.remove('show');
-            }
-        });
+    for (let i = start * 60; i <= end * 60; i += 30) {
+      let hours = Math.floor(i / 60);
+      let minutes = i % 60;
+      let displayHours = ((hours + 11) % 12) + 1;
+      let ampm = hours >= 12 && hours < 24 ? "PM" : "AM";
+      if (hours >= 24) hours -= 24;
 
-        // --- Theme toggle ---
-        const themeSwitch = document.getElementById('theme-switch');
-        themeSwitch.addEventListener('change', function() {
-            console.log('Theme toggle clicked:', this.checked ? 'Dark' : 'Light');
-        });
+      let label = `${displayHours}:${minutes
+        .toString()
+        .padStart(2, "0")} ${ampm}`;
+      const div = document.createElement("div");
+      div.className = "time-slot";
+      div.innerHTML = `
+        <label for="time-${i}">${label}</label>
+        <input type="radio" name="time" id="time-${i}" value="${label}">
+      `;
+      container.appendChild(div);
+    }
 
-        // --- Clickable time selection ---
-        timeList.addEventListener('click', (e) => {
-            const item = e.target.closest('.time-option');
-            if (!item) return;
+    // Dropdown menu logic
+    const profileButton = document.getElementById("profileButton");
+    const dropdownMenu = document.getElementById("dropdownMenu");
 
-            const value = item.dataset.value;
-            const isSelected = selectedValues.includes(value);
+    profileButton.addEventListener("click", function (e) {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle("show");
+    });
 
-            if (isSelected) {
-                selectedValues = selectedValues.filter(v => v !== value);
-                item.classList.remove('selected');
-            } else {
-                selectedValues.push(value);
-                item.classList.add('selected');
-            }
+    // Restore previously selected time from localStorage
+    const savedTime = localStorage.getItem("selectedTime");
+    if (savedTime) {
+      const radio = document.querySelector(`input[name="time"][value="${savedTime}"]`);
+      if (radio) radio.checked = true;
+    }
+    // Save selected time whenever a radio is clicked
+    container.addEventListener("change", function (e) {
+      if (e.target.name === "time") {
+        localStorage.setItem("selectedTime", e.target.value);
+      }
+    });
 
-            updateTags();
-        });
+    document.addEventListener("click", function (e) {
+      if (
+        !profileButton.contains(e.target) &&
+        !dropdownMenu.contains(e.target)
+      ) {
+        dropdownMenu.classList.remove("show");
+      }
+    });
 
-        function updateTags() {
-            selectedTags.innerHTML = '';
-            selectedValues.forEach(val => {
-                const opt = document.querySelector(`.time-option[data-value="${val}"]`);
-                const tag = document.createElement('span');
-                tag.className = 'tag';
-                tag.textContent = opt.textContent;
-                selectedTags.appendChild(tag);
-            });
-        }
-    </script>
+    // Theme switch log
+    const themeSwitch = document.getElementById("theme-switch");
+    themeSwitch.addEventListener("change", function () {
+      console.log("Theme toggle clicked:", this.checked ? "Dark" : "Light");
+    });
+  </script>
 </body>
 </html>
