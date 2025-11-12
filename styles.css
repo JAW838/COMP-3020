@@ -180,7 +180,7 @@ body {
     align-items: center;
     min-height: calc(100vh - 200px); /* leave space for header + footer */
     background-color: #ffffff; /* White content area */
-    padding: 60px 40px;
+    padding: 30px 40px;
 }
 
 /* ===== BUTTON GROUP ===== */
@@ -524,70 +524,113 @@ body {
     cursor: pointer;
 }
 
-
-/* ===== RESULTS PAGE ===== */
+/* ===== RESULTS PAGE (All Events) ===== */
 .results-container {
-    width: 100%;
-    max-width: 1000px;
+    max-width: 1700px; /* Large container width */
+    min-width: 1000;
+    height: 1100px;
+    max-height: 1800;
+    padding: 20px 40px; /* Padding inside the border */
+    background-color: #f8f8f8; /* Light background */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border: 3px solid #006eb5; /* UofM Blue border for the wide rectangle */
 }
 
+/* Two-column layout for events and map */
 .results-layout {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: minmax(550px, 1fr) minmax(400px, 2fr); /* Event list (1/3 list), Map (2/3 map) */
     gap: 30px;
-    margin-top: 30px;
+    margin-top: 10px;
+    height: calc(100% - 140px); /* Fixed height for the event/map area */
+    padding-top: 30px; /* Add internal padding */
+    border-top: 1px solid #ddd; /* Separator line between title/layout */
 }
 
+/* Scrollable Partition for Event Cards */
+.event-cards-scroll {
+    overflow-y: auto; /* Enables vertical scrolling */
+    height: 100%; /* Ensures it fits within the parent's fixed height */
+    padding-right: 15px; /* Space for the scrollbar */
+}
+
+/* The actual list of event tiles (2-column layout) */
 .event-cards {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: start;
+    min-width: 500px;
     gap: 15px;
 }
 
 .event-card {
-    background: #c8e6a0;
-    padding: 20px;
-    border-radius: 5px;
+    /* Base style: Vertical Stack */
+    background: white;
+    border-radius: 8px;
     display: flex;
-    align-items: center;
-    gap: 15px;
+    flex-direction: column; /* Stacks image and banner vertically */
     cursor: pointer;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden; /* Ensures contents respect border-radius */
+    border: 1px solid #ddd;
 }
 
 .event-card:hover {
-    background: #b8d690;
-    transform: translateX(5px);
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-.event-icon {
-    font-size: 2rem;
+/* 1. Event Image (Top Section) */
+.event-image {
+    width: 100%;
+    /* To maintain a square ratio (1:1) */
+    aspect-ratio: 1 / 1; 
+    display: block;
+    object-fit: cover; /* Ensures the image covers the area */
 }
 
-.event-name {
-    font-size: 1.125rem;
-    font-weight: bold;
-    color: #333;
-}
-
-.map-container {
-    background: #f0f0f0;
-    border: 2px solid #006eb5;
-    border-radius: 5px;
-    min-height: 400px;
+/* 2. Small White Text Banner (Bottom Section) */
+.event-banner {
+    background: white;
+    padding: 10px 10px;
+    text-align: left;
+    height: 60px; /* Fixed height for a uniform "small banner" */
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
 }
 
-.map-placeholder {
-    text-align: center;
-    color: #666;
+.event-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.map-placeholder p {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+.event-time {
+    font-size: 0.8rem;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Map Placeholder (Right Side) */
+.map-container {
+    background: #f0f0f0;
+    border: 2px solid #6b4423; /* Brown border for contrast */
+    border-radius: 5px;
+    height: 100%;
+}
+
+#leaflet-event-map {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
 }
 
 .map-note {
@@ -599,121 +642,6 @@ body {
 .view-all-link {
     margin-top: 30px;
     text-align: center;
-}
-
-.view-all-link a {
-    color: #006eb5;
-    font-size: 1.125rem;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.view-all-link a:hover {
-    color: #0081d5;
-    text-decoration: underline;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .header {
-        padding: 15px 20px;
-    }
-    
-    .main-content {
-        padding: 40px 20px;
-    }
-    
-    .button-row {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .tooltip-left {
-        order: 2;
-        text-align: center;
-    }
-    
-    .btn {
-        order: 1;
-        width: 100%;
-    }
-    
-    .btn-primary {
-        font-size: 1.25rem;
-        padding: 25px 50px;
-    }
-    
-    .btn-secondary {
-        font-size: 1rem;
-        padding: 18px 40px;
-    }
-    
-    .footer {
-        padding: 20px;
-    }
-    
-    /* Questionnaire mobile styles */
-    .progress-indicator {
-        gap: 10px;
-    }
-    
-    .progress-circle {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-        border-width: 2px;
-    }
-    
-    .progress-circle.active {
-        border-width: 3px;
-    }
-    
-    .sticky-options {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .sticky-note {
-        width: 100%;
-        max-width: 250px;
-    }
-    
-    .time-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    
-    .other-times {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .tired-options {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .results-layout {
-        grid-template-columns: 1fr;
-    }
-    
-    .event-cards {
-        order: 2;
-    }
-    
-    .map-container {
-        order: 1;
-        min-height: 250px;
-    }
-    
-    .nav-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .btn-nav {
-        width: 100%;
-    }
 }
 
 /* ===== BUTTON ROW - Right-aligned button + Left-aligned tooltip ===== */
@@ -778,9 +706,6 @@ body {
 
 /* ===== FOOTER ===== */
 .footer {
-    position: absolute; /* or fixed, if you want it to stay visible while scrolling */
-    top: calc(100vh - 125px); /* 200px is the distance from the bottom to the top of the footer */
-    bottom: 0;
     width: 100%;
     background-color: #e8dcc8;
     display: flex;
@@ -788,27 +713,6 @@ body {
     align-items: flex-start;
     padding: 30px 40px;
     gap: 10px;
-}
-
-.btn-past-events {
-    padding: 12px 24px;
-    background: #6b4423; /* Brown */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn-past-events:hover {
-    background: #8b5a2b;
-}
-
-.footer-note {
-    font-size: 12px;
-    color: #666;
-    font-style: italic;
 }
 
 /* ===== ADD EVENT PAGE ===== */
