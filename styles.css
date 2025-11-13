@@ -16,17 +16,18 @@ White: #ffffff (Content background)
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #e8dcc8; /* Light tan/brown */
+    background-color: #e8dcc8;
+    /* Light tan/brown */
     min-height: 100vh;
     color: #333;
 }
-
 
 /* ===== MAIN CONTAINER - CSS GRID ===== */
 .container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* makes the whole page fill the viewport */
+    min-height: 100vh;
+    /* makes the whole page fill the viewport */
 }
 
 /* ===== HEADER - UofM Blue Background ===== */
@@ -35,15 +36,18 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background-color: #006eb5; /* UofM Blue */
-    border-bottom: 3px solid #ffb81c; /* UofM Gold accent */
+    background-color: #006eb5;
+    /* UofM Blue */
+    border-bottom: 3px solid #ffb81c;
+    /* UofM Gold accent */
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
     color: #333;
-    border: 2px solid #6b4423; /* Brown border */
+    border: 2px solid #6b4423;
+    /* Brown border */
     padding: 10px 20px;
     background: white;
 }
@@ -61,19 +65,22 @@ body {
 .icon {
     font-size: 1.75rem;
     cursor: pointer;
-    filter: brightness(0) invert(1); /* Make emojis white on blue background */
+    filter: brightness(0) invert(1);
+    /* Make emojis white on blue background */
 }
 
 /* ===== MAIN CONTENT ===== */
 .main-content {
-    flex: 1; /* allows footer to sit at bottom without overlap */
+    flex: 1;
+    /* allows footer to sit at bottom without overlap */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
     box-sizing: border-box;
-    background-color: white; /* ensure white background */
+    background-color: white;
+    /* ensure white background */
 }
 
 /* ===== FOOTER ===== */
@@ -86,14 +93,17 @@ body {
     justify-content: flex-start;
     padding: 20px 40px;
     gap: 10px;
-    height: 125px;           /* fixed footer height */
+    height: 125px;
+    /* fixed footer height */
     box-sizing: border-box;
-    overflow: hidden;        /* prevent growing beyond height */
+    overflow: hidden;
+    /* prevent growing beyond height */
 }
 
 .btn-past-events {
     padding: 12px 24px;
-    background: #6b4423; /* Brown */
+    background: #6b4423;
+    /* Brown */
     color: white;
     border: none;
     border-radius: 5px;
@@ -112,6 +122,36 @@ body {
     font-style: italic;
 }
 
+/* ===== BREADCRUMBS ===== */
+.breadcrumb-container {
+    width: 100%;
+    max-width: 1700px; /* Should match max-width of .results-container */
+    padding: 0 40px 15px 40px; /* Padding for horizontal alignment and vertical spacing */
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.breadcrumb-link {
+    color: var(--uom-blue); /* UofM Blue for links */
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.breadcrumb-link:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    margin: 0 8px;
+    color: #666;
+}
+
+.breadcrumb-current {
+    color: var(--uom-brown); /* UofM Brown/Bison for the current page */
+    font-size: 18px;
+    font-weight: bold;
+}
 
 /* ===== THEME TOGGLE SWITCH ===== */
 .theme-toggle {
@@ -128,7 +168,8 @@ body {
     justify-content: space-between;
     width: 70px;
     height: 35px;
-    background: #ffb81c; /* UofM Gold */
+    background: #ffb81c;
+    /* UofM Gold */
     border-radius: 50px;
     padding: 5px;
     cursor: pointer;
@@ -148,15 +189,16 @@ body {
     opacity: 0.3;
 }
 
-.theme-switch-input:checked + .theme-switch-label {
-    background: #6b4423; /* Brown when checked */
+.theme-switch-input:checked+.theme-switch-label {
+    background: #6b4423;
+    /* Brown when checked */
 }
 
-.theme-switch-input:checked + .theme-switch-label .sun {
+.theme-switch-input:checked+.theme-switch-label .sun {
     opacity: 0.3;
 }
 
-.theme-switch-input:checked + .theme-switch-label .moon {
+.theme-switch-input:checked+.theme-switch-label .moon {
     opacity: 1;
 }
 
@@ -172,7 +214,7 @@ body {
     transition: transform 0.3s;
 }
 
-.theme-switch-input:checked + .theme-switch-label::before {
+.theme-switch-input:checked+.theme-switch-label::before {
     transform: translateX(35px);
 }
 
@@ -188,7 +230,8 @@ body {
     font-size: 1.75rem;
     cursor: pointer;
     padding: 5px;
-    filter: brightness(0) invert(1); /* White on blue */
+    filter: brightness(0) invert(1);
+    /* White on blue */
 }
 
 .dropdown-menu {
@@ -226,8 +269,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 200px); /* leave space for header + footer */
-    background-color: #ffffff; /* White content area */
+    min-height: calc(100vh - 200px);
+    /* leave space for header + footer */
+    background-color: #ffffff;
+    /* White content area */
     padding: 30px 40px;
 }
 
@@ -253,7 +298,8 @@ body {
     text-align: left;
     padding: 20px 25px;
     background: white;
-    border: 2px solid #006eb5; /* Blue border */
+    border: 2px solid #006eb5;
+    /* Blue border */
     border-radius: 5px;
     font-size: 1rem;
     color: #333;
@@ -276,11 +322,13 @@ body {
 
 /* ===== PRIMARY BUTTON - Questionnaire (BIGGER) ===== */
 .btn-primary {
-    background: #ffb81c; /* UofM Gold */
+    background: #ffb81c;
+    /* UofM Gold */
     color: #333;
     font-size: 1.5rem;
     padding: 30px 70px;
-    border: 3px solid #006eb5; /* Blue border */
+    border: 3px solid #006eb5;
+    /* Blue border */
 }
 
 .btn-primary:hover {
@@ -289,7 +337,8 @@ body {
 
 /* ===== SECONDARY BUTTONS - See Events & Add Event ===== */
 .btn-secondary {
-    background: #006eb5; /* UofM Blue */
+    background: #006eb5;
+    /* UofM Blue */
     color: white;
     font-size: 1.125rem;
     padding: 20px 50px;
@@ -332,24 +381,31 @@ body {
 
 /* Container for the question box */
 .questionnaire-container {
-    position: relative; /* This makes the questionnaire
+    position: relative;
+    /* This makes the questionnaire
     the main reference point*/
-    width: 1100px;       /* fixed width */
-    height: 700px;      /* fixed height */
+    width: 1100px;
+    /* fixed width */
+    height: 700px;
+    /* fixed height */
     background-color: #f8f8f8;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 80px 40px 80px; /* space for content inside */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 80px 40px 80px;
+    /* space for content inside */
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center; /* horizontal centering */
-    justify-content: center; /* vertical centering */
+    align-items: center;
+    /* horizontal centering */
+    justify-content: center;
+    /* vertical centering */
 }
 
-.question-title{
+.question-title {
     position: absolute;
-    top: 80px; /* distance from top of container */
+    top: 80px;
+    /* distance from top of container */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -359,7 +415,8 @@ body {
 /* Circles container (top navigation) */
 .progress-indicator {
     position: absolute;
-    top: 20px; /* distance from top of container */
+    top: 20px;
+    /* distance from top of container */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -383,13 +440,15 @@ body {
 
 .progress-circle.active {
     background-color: #6b4423;
-    border: 3px solid #006eb5; /* Blue border */
+    border: 3px solid #006eb5;
+    /* Blue border */
     color: white;
 }
 
 .progress-circle.active:hover {
     background-color: #6b4423;
-    border: 3px solid #006eb5; /* Blue border */
+    border: 3px solid #006eb5;
+    /* Blue border */
     color: white;
 }
 
@@ -419,7 +478,7 @@ body {
     font-size: 1rem;
     font-weight: bold;
     width: 120px;
-    
+
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -447,7 +506,7 @@ body {
     background: #fff59d;
     padding: 40px;
     border-radius: 5px;
-    box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
     max-width: 500px;
     width: 100%;
 }
@@ -482,69 +541,73 @@ body {
 
 /* ===== RESULTS PAGE (All Events) ===== */
 .results-container {
-    max-width: 1700px; /* Large container width */
+    max-width: 1700px;
+    /* Large container width */
     min-width: 1000;
     height: 1100px;
     max-height: 1800;
-    padding: 20px 40px; /* Padding inside the border */
-    background-color: #f8f8f8; /* Light background */
+    padding: 20px 40px;
+    /* Padding inside the border */
+    background-color: #f8f8f8;
+    /* Light background */
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    border: 3px solid #006eb5; /* UofM Blue border for the wide rectangle */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 3px solid #006eb5;
+    /* UofM Blue border for the wide rectangle */
 }
 
 /* Two-column layout for events and map */
 .results-layout {
     display: grid;
-    grid-template-columns: minmax(550px, 1fr) minmax(400px, 2fr); /* Event list (1/3 list), Map (2/3 map) */
+    /* Use grid instead of flex for reliable column sizing */
+    grid-template-columns: minmax(550px, 1fr) 2fr;
+    /* Event list min 550px, Map gets 2 parts space */
     gap: 30px;
-    margin-top: 10px;
-    height: calc(100% - 140px); /* Fixed height for the event/map area */
-    padding-top: 30px; /* Add internal padding */
-    border-top: 1px solid #ddd; /* Separator line between title/layout */
+    margin-top: 30px;
+    height: calc(100% - 80px);
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
 }
 
 /* Scrollable Partition for Event Cards */
 .event-cards-scroll {
-    overflow-y: auto; /* Enables vertical scrolling */
-    height: 100%; /* Ensures it fits within the parent's fixed height */
-    padding-right: 15px; /* Space for the scrollbar */
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 15px;
 }
 
 /* The actual list of event tiles (2-column layout) */
 .event-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
     align-content: start;
-    min-width: 500px;
     gap: 15px;
+    width: 100%;
 }
 
 .event-card {
-    /* Base style: Vertical Stack */
     background: white;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column; /* Stacks image and banner vertically */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-    overflow: hidden; /* Ensures contents respect border-radius */
-    border: 1px solid #ddd;
+    transition: transform 0.2s ease;
+    overflow: hidden;
 }
 
 .event-card:hover {
-    transform: translateY(-2px); /* Lift effect on hover */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+    /* Lift effect on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* 1. Event Image (Top Section) */
 .event-image {
     width: 100%;
     /* To maintain a square ratio (1:1) */
-    aspect-ratio: 1 / 1; 
+    aspect-ratio: 1 / 1;
     display: block;
-    object-fit: cover; /* Ensures the image covers the area */
+    object-fit: cover;
+    /* Ensures the image covers the area */
 }
 
 /* 2. Small White Text Banner (Bottom Section) */
@@ -552,7 +615,8 @@ body {
     background: white;
     padding: 10px 10px;
     text-align: left;
-    height: 60px; /* Fixed height for a uniform "small banner" */
+    height: 60px;
+    /* Fixed height for a uniform "small banner" */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -578,7 +642,8 @@ body {
 /* Map Placeholder (Right Side) */
 .map-container {
     background: #f0f0f0;
-    border: 2px solid #6b4423; /* Brown border for contrast */
+    border: 2px solid #6b4423;
+    /* Brown border for contrast */
     border-radius: 5px;
     height: 100%;
 }
@@ -593,6 +658,76 @@ body {
     font-size: 1rem;
     color: #999;
     font-style: italic;
+}
+
+/* ===== EXPANDED EVENT VIEW ===== */
+.event-cards.expanded {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.event-card.expanded {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    background: #ffffff;
+    border: 3px solid #006eb5;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.event-card.expanded img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.event-card.expanded h2 {
+    font-size: 1.5rem;
+    color: #006eb5;
+    margin-bottom: 10px;
+}
+
+.event-card.expanded p {
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.back-button {
+    display: inline-block;
+    background: #006eb5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.back-button:hover {
+    background: #0081d5;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .view-all-link {
@@ -613,7 +748,8 @@ body {
     text-align: left;
     padding: 15px 20px;
     background: white;
-    border: 2px solid #006eb5; /* Blue border */
+    border: 2px solid #006eb5;
+    /* Blue border */
     border-radius: 5px;
     font-size: 14px;
     color: #333;
@@ -627,7 +763,8 @@ body {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    background: #6b4423; /* Brown */
+    background: #6b4423;
+    /* Brown */
     color: white;
 }
 
@@ -637,11 +774,13 @@ body {
 
 /* ===== PRIMARY BUTTON - Questionnaire ===== */
 .btn-primary {
-    background: #ffb81c; /* UofM Gold */
+    background: #ffb81c;
+    /* UofM Gold */
     color: #333;
     font-size: 24px;
     padding: 30px 60px;
-    border: 3px solid #006eb5; /* Blue border */
+    border: 3px solid #006eb5;
+    /* Blue border */
 }
 
 .btn-primary:hover {
@@ -650,7 +789,8 @@ body {
 
 /* ===== SECONDARY BUTTONS ===== */
 .btn-secondary {
-    background: #006eb5; /* UofM Blue */
+    background: #006eb5;
+    /* UofM Blue */
     color: white;
     font-size: 18px;
     padding: 20px 40px;
@@ -674,8 +814,9 @@ body {
 /* ===== ADD EVENT PAGE ===== */
 .page-title {
     text-align: center;
-    font-size: 36px;
-    color: #006eb5; /* Blue title */
+    font-size: 44px;
+    color: #006eb5;
+    /* Blue title */
     margin-bottom: 40px;
 }
 
@@ -704,7 +845,8 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: #006eb5; /* Blue focus */
+    border-color: #006eb5;
+    /* Blue focus */
 }
 
 .form-textarea {
@@ -725,7 +867,8 @@ body {
 }
 
 .drag-drop-area:hover {
-    border-color: #ffb81c; /* Gold on hover */
+    border-color: #ffb81c;
+    /* Gold on hover */
     background: #fffdf5;
 }
 
@@ -736,7 +879,8 @@ body {
 }
 
 .btn-cancel {
-    background: #6b4423; /* Brown */
+    background: #6b4423;
+    /* Brown */
     color: white;
     padding: 15px 40px;
     border: none;
@@ -750,7 +894,8 @@ body {
 }
 
 .btn-submit {
-    background: #ffb81c; /* Gold */
+    background: #ffb81c;
+    /* Gold */
     color: #333;
     padding: 15px 40px;
     border: 2px solid #006eb5;
@@ -789,39 +934,38 @@ body {
     .questionnaire-box {
         padding: 40px 30px;
     }
-    
+
     .questionnaire-title {
         font-size: 36px;
     }
-    
+
     .action-buttons {
         flex-direction: column;
         width: 100%;
         max-width: 300px;
     }
-    
+
     .btn-action {
         width: 100%;
     }
-    
+
     .button-row {
         grid-template-columns: 1fr;
         gap: 10px;
     }
-    
+
     .tooltip-left {
         order: 2;
         text-align: center;
     }
-    
+
     .btn {
         order: 1;
         width: 100%;
     }
-    
+
     .btn-primary {
         font-size: 20px;
         padding: 25px 50px;
     }
 }
-
