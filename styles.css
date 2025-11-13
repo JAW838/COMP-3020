@@ -1,10 +1,20 @@
 /* ===== UofM COLOR PALETTE ===== */
 /* 
+Light Mode:
 Blue: #006eb5 (UofM Blue)
 Brown: #6b4423 (UofM Brown/Bison)
 Yellow: #ffb81c (UofM Gold)
 Light tan: #e8dcc8 (Light brown background)
 White: #ffffff (Content background)
+
+Dark Mode:
+- Deep navy: #1a3a52 (darker version of UofM blue)
+- Navy blue: #0d2438
+- Blue-gray: #2e4a5e
+- Gold: #FFC845 (Actual UofM gold(?))
+- Light blue: #4db8d8 (UofM cyan, but a bit brighter for dark mode)
+- Brown: #6B4423 (UofM Brown/Bison)
+
 */
 
 /* ===== GLOBAL RESET & BASE STYLES ===== */
@@ -290,6 +300,21 @@ body {
     background: #0081d5;
 }
 
+/* ===== TERTIARY(?) BUTTON - Past Event ===== */
+.btn-past-events {
+    padding: 15px 30px;
+    background: #6b4423;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-past-events:hover {
+    background: #8b5a2b;
+}
 
 /* ===== PAST EVENTS PAGE ===== */
 .events-list {
@@ -386,6 +411,7 @@ body {
 
 .progress-circle:hover {
     background-color: #ffb81c;
+    transform: scale(1.1);
 }
 
 
@@ -785,3 +811,105 @@ body {
     }
 }
 
+/* ===== DARK MODE ===== */
+body.dark-mode {
+    background-color: #1a3a52;
+    color: #ffffff;
+}
+
+body.dark-mode .header {
+    background-color: #0d2438;
+}
+
+body.dark-mode .logo {
+    background: #3e3e42;
+    color: #ffffff;
+    border-color: #6B4423;
+}
+
+body.dark-mode .main-content {
+    background-color: #2e4a5e;
+}
+
+body.dark-mode .footer {
+    background-color: #0d2438;
+}
+
+body.dark-mode .btn-primary {
+    background: #FFC845;
+    color: #2d2d30;
+    border-color: #003F87;
+}
+
+body.dark-mode .btn-secondary {
+    background: #4db8d8;
+    color: #ffffff;
+}
+
+body.dark-mode .btn-secondary:hover {
+    background: #003F87;
+}
+
+body.dark-mode .btn-past-events {
+    background: #6B4423;
+}
+
+body.dark-mode .btn-past-events:hover {
+    background: #6B4423;
+}
+
+body.dark-mode .btn-previous {
+    background: #6B4423;
+}
+
+body.dark-mode .btn-previous:hover {
+    background: #FFC845;
+}
+
+body.dark-mode .btn-next {
+    background: #6B4423;
+}
+
+body.dark-mode .btn-next:hover {
+    background: #FFC845;
+}
+
+body.dark-mode .progress-circle {
+    background: #2e4a5e;
+    border-color: #6B4423;
+    color: #6B4423;
+}
+
+body.dark-mode .progress-circle.active {
+    border-color: #FFC845;
+    color: #FFC845;
+}
+
+body.dark-mode .progress-circle.completed {
+    background: #003F87;
+    border-color: #FFC845;
+    color: #ffffff;
+}
+
+body.dark-mode .question-title,
+body.dark-mode .page-title {
+    color: #FFC845;
+}
+
+body.dark-mode .question-subtitle,
+body.dark-mode .footer-note {
+    color: #aaaaaa;
+}
+
+body.dark-mode .dropdown-menu {
+    background: #2e4a5e;
+    border-color: #003F87;
+}
+
+body.dark-mode .dropdown-item {
+    color: #ffffff;
+}
+
+body.dark-mode .dropdown-item:hover {
+    background: #6B4423;
+}
