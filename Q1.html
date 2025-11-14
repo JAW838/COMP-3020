@@ -369,10 +369,26 @@
       }
     });
 
-    // Theme switch log
-    const themeSwitch = document.getElementById("theme-switch");
-    themeSwitch.addEventListener("change", function () {
-      console.log("Theme toggle clicked:", this.checked ? "Dark" : "Light");
+    // Dark Mode Toggle
+    const themeSwitch = document.getElementById('theme-switch');
+    
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeSwitch.checked = true;
+    }
+    else {
+        document.body.classList.remove('dark-mode');
+        themeSwitch.checked = false;
+    }
+    themeSwitch.addEventListener('change', function() {
+        if (this.checked) {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+        }
     });
 
     function renderBreadcrumbs() {

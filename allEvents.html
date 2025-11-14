@@ -241,8 +241,15 @@
 
             const isUserSubmitted = event.userSubmitted;
             const statusText = isUserSubmitted ? "Community Event" : "Official Event";
-            const statusColor = isUserSubmitted ? "red" : "#006eb5";
+            
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            let statusColor;
 
+            if (isUserSubmitted) {
+                statusColor = isDarkMode ? "#ff6961" : "red";
+            } else {
+                statusColor = isDarkMode ? "#4db8d8" : "#006eb5"; 
+            }
             eventCardsScroll.classList.add("expanded-view");
             cardsContainer.classList.add("expanded");
             cardsContainer.style.gridTemplateColumns = "1fr";
@@ -310,13 +317,17 @@
 
         // Dark Mode Toggle
         const themeSwitch = document.getElementById('theme-switch');
-
+        
         const currentTheme = localStorage.getItem('theme') || 'light';
         if (currentTheme === 'dark') {
             document.body.classList.add('dark-mode');
             themeSwitch.checked = true;
         }
-
+        
+        else {
+            document.body.classList.remove('dark-mode');
+            themeSwitch.checked = false;
+        }
         themeSwitch.addEventListener('change', function() {
             if (this.checked) {
                 document.body.classList.add('dark-mode');
@@ -325,10 +336,8 @@
                 document.body.classList.remove('dark-mode');
                 localStorage.setItem('theme', 'light');
             }
-        themeSwitch.addEventListener('change', function () {
-            console.log('Theme toggle clicked:', this.checked ? 'Dark' : 'Light');
         });
-
+        
         // --- Breadcrumb Helper Functions ---
         function showGridBreadcrumbs() {
             const breadcrumbs = document.getElementById('breadcrumbs');
