@@ -60,6 +60,11 @@
             transform: scale(1.15);
         }
 
+        body.dark-mode .emoji-btn.selected {
+            background-color: #2e4a5e;
+            border-color: #FFC845;
+        }
+
         .emoji-label {
             margin-top: 8px;
             font-weight: 500;
@@ -196,6 +201,10 @@
         if (currentTheme === 'dark') {
             document.body.classList.add('dark-mode');
             themeSwitch.checked = true;
+        }
+        else {
+            document.body.classList.remove('dark-mode');
+            themeSwitch.checked = false;
         }
         themeSwitch.addEventListener('change', function() {
             if (this.checked) {

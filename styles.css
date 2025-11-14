@@ -1,5 +1,5 @@
 /* ===== UofM COLOR PALETTE ===== */
-/* 
+/*
 Light Mode:
 Blue: #006eb5 (UofM Blue)
 Brown: #6b4423 (UofM Brown/Bison)
@@ -75,7 +75,7 @@ body {
 .secondary-actions-container {
     display: grid;
     /* Arranges the 3 buttons in a 3-column layout */
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: 100%;
     margin-top: -10px;
@@ -87,12 +87,12 @@ body {
     max-width: 500px;
     margin: 40px auto; /* Centers and adds spacing */
     border: none;
-    border-top: 2px solid #ddd; 
+    border-top: 2px solid #ddd;
 }
 
 /* Ensure secondary buttons are slightly smaller than the primary one */
 .btn-secondary {
-    font-size: 16px; 
+    font-size: 16px;
     padding: 15px 30px;
     margin: 20px;
     text-align: center;
@@ -118,14 +118,14 @@ body {
 
 .header-nav {
     display: flex;
-    gap: 35px; 
+    gap: 35px;
     margin: 0 auto;
     list-style: none;
     padding: 0;
 }
 
 .header-nav-item a {
-    color: rgba(255, 255, 255, 0.6); 
+    color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: bold;
@@ -221,7 +221,7 @@ body {
 /* ===== BREADCRUMBS ===== */
 .breadcrumb-wrapper {
     width: 100%;
-    background-color: white; 
+    background-color: white;
     height: 15px;
 }
 
@@ -457,6 +457,43 @@ body {
     width: 100%;
 }
 
+.events-table-container {
+    background: white;
+    padding: 30px;
+    border: 2px solid #006eb5;
+    border-radius: 5px;
+    max-width: 1000px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.events-table thead {
+    background-color: #006eb5;
+    color: white;
+}
+
+.events-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 3px solid #ffb81c;
+}
+
+.events-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.events-table tbody tr:hover {
+    background-color: #f0f8ff;
+    cursor: pointer;
+}
+
+.events-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
 .event-item {
     padding: 15px 0;
     border-bottom: 1px solid #eee;
@@ -668,17 +705,26 @@ body {
 
 /* Scrollable Partition for Event Cards */
 .event-cards-scroll {
-    height: 100%;
     overflow-y: auto;
-    padding-right: 15px;
+    background: white;
+    border: 2px solid #006eb5;
+    border-radius: 5px;
+    padding: 20px;
+    max-height: 800px;
 }
 
-/* The actual list of event tiles (2-column layout) */
+.event-cards-scroll.expanded-view {
+    display: flex;
+    justify-content: center;
+    /* Center the single expanded card */
+}
+
+/* Grid for the events */
 .event-cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(250px, 1fr));
     align-content: start;
-    gap: 15px;
+    gap: 20px;
     width: 100%;
 }
 
@@ -720,7 +766,7 @@ body {
 }
 
 .event-name {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #333;
     white-space: nowrap;
@@ -814,6 +860,75 @@ body {
 .back-button:hover {
     background: #0081d5;
 }
+
+/* ===== MODAL STYLES (Popup for Past Events) ===== */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2000; /* Ensure it's on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    padding-top: 60px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 25px; /* Increased padding */
+    border: 3px solid #006eb5; /* UofM Blue border */
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Close button style */
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #006eb5;
+    text-decoration: none;
+}
+
+/* Event details inside the modal */
+.modal-event-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.modal-content h2 {
+    font-size: 1.5rem;
+    color: #006eb5;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    margin-bottom: 12px;
+    color: #333;
+}
+
+
 
 @keyframes fadeIn {
     from {
@@ -1005,26 +1120,6 @@ body {
     background: #ffc838;
 }
 
-/* ===== PAST EVENTS PAGE ===== */
-.events-list {
-    background: white;
-    padding: 30px;
-    border: 2px solid #006eb5;
-    border-radius: 5px;
-    max-width: 800px;
-    width: 100%;
-}
-
-.event-item {
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 16px;
-    color: #333;
-}
-
-.event-item:last-child {
-    border-bottom: none;
-}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
@@ -1078,13 +1173,14 @@ body.dark-mode .header {
 }
 
 body.dark-mode .logo {
-    background: #3e3e42;
+    background: #0d2438;
     color: #ffffff;
     border-color: #6B4423;
 }
 
 body.dark-mode .main-content {
     background-color: #2e4a5e;
+    color: #ffffff;
 }
 
 body.dark-mode .footer {
@@ -1111,7 +1207,7 @@ body.dark-mode .btn-past-events {
 }
 
 body.dark-mode .btn-past-events:hover {
-    background: #6B4423;
+    background: #8b5a2b; 
 }
 
 body.dark-mode .btn-previous {
@@ -1132,11 +1228,12 @@ body.dark-mode .btn-next:hover {
 
 body.dark-mode .progress-circle {
     background: #2e4a5e;
-    border-color: #6B4423;
-    color: #6B4423;
+    border-color: #aaaaaa;
+    color: #ffffff;
 }
 
 body.dark-mode .progress-circle.active {
+    background: #6b4423; 
     border-color: #FFC845;
     color: #FFC845;
 }
@@ -1168,4 +1265,227 @@ body.dark-mode .dropdown-item {
 
 body.dark-mode .dropdown-item:hover {
     background: #6B4423;
+}
+
+body.dark-mode .questionnaire-container {
+    background-color: #1a3a52;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .time-selection {
+    background-color: #2e4a5e !important;
+    border: 1px solid #6B4423 !important;
+}
+
+body.dark-mode .time-slot label {
+    color: #ffffff !important;
+}
+
+body.dark-mode .time-slot input[type="radio"] {
+    border: 2px solid #ffffff !important;
+}
+
+body.dark-mode .time-slot input[type="radio"]:checked {
+    background-color: #FFC845 !important;
+    border: 3px solid #006eb5 !important;
+    box-shadow: 0 0 8px rgba(255, 200, 69, 0.8) !important;
+}
+
+body.dark-mode .time-slot input[type="radio"]:hover {
+    background-color: #6B4423 !important;
+    border: 3px solid #006eb5 !important;
+}
+
+body.dark-mode .results-container {
+    background-color: #1a3a52;
+    border: 3px solid #FFC845;
+    color: #ffffff;
+}
+
+body.dark-mode .event-card {
+    background: #0d2438;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .event-name {
+    color: #FFC845;
+}
+
+body.dark-mode .event-time {
+    color: #aaaaaa;
+}
+
+body.dark-mode .form-container {
+    background: #1a3a52;
+    border-color: #FFC845;
+}
+
+body.dark-mode .form-input,
+body.dark-mode .form-textarea {
+    background: #2e4a5e;
+    border-color: #6b4423;
+    color: #ffffff;
+}
+
+body.dark-mode .form-input:focus,
+body.dark-mode .form-textarea:focus {
+    border-color: #4db8d8;
+}
+
+body.dark-mode .drag-drop-area {
+    border-color: #FFC845;
+    background: #1a3a52;
+    color: #aaaaaa;
+}
+
+body.dark-mode .events-table-container {
+    background: #1a3a52; 
+    border: 2px solid #FFC845;
+}
+
+body.dark-mode .events-table thead {
+    background-color: #0d2438;
+    color: #ffffff;
+}
+
+body.dark-mode .events-table th {
+    border-bottom: 3px solid #6B4423; 
+}
+
+body.dark-mode .events-table td {
+    color: #ffffff;
+    border-bottom: 1px solid #2e4a5e;
+}
+
+body.dark-mode .events-table tbody tr:hover {
+    background-color: #2e4a5e; 
+}
+
+body.dark-mode .modal-content {
+    background-color: #0d2438; 
+    border-color: #FFC845;
+    color: #ffffff;
+}
+
+body.dark-mode .close-button {
+    color: #ddd;
+}
+
+body.dark-mode .close-button:hover,
+body.dark-mode .close-button:focus {
+    color: #4db8d8;
+}
+
+body.dark-mode .event-card.expanded h2 {
+    color: #FFC845;
+}
+
+body.dark-mode .event-card.expanded p {
+    color: #ffffff;
+}
+
+body.dark-mode .back-button {
+    background: #FFC845;
+    color: #0d2438;
+}
+
+body.dark-mode .back-button:hover {
+    background: #ffb81c;
+}
+
+body.dark-mode .breadcrumb-wrapper {
+    background-color: #2e4a5e;
+}
+
+body.dark-mode .breadcrumb-container {
+    color: #ffffff;
+}
+body.dark-mode .breadcrumb-current {
+    color: #FFC845;
+}
+
+body.dark-mode .footer-note {
+    color: #aaaaaa;
+}
+body.dark-mode .event-card .event-name {
+    color: #ffffff;
+}
+body.dark-mode .event-card .event-time {
+    color: #aaaaaa;
+}
+
+body.dark-mode .tooltip-left {
+    background: #2e4a5e;
+    color: #ffffff; 
+    border-color: #4db8d8;
+}
+
+body.dark-mode .questionnaire-container {
+    background-color: #1a3a52;
+    color: #ffffff;
+}
+
+body.dark-mode .question-title {
+    color: #ffffff; 
+}
+
+body.dark-mode .question-subtitle {
+    color: #aaaaaa;
+}
+
+body.dark-mode .time-selection {
+    background-color: #2e4a5e;
+    border-color: #6B4423;
+}
+body.dark-mode .time-slot label {
+    color: #ffffff;
+}
+
+body.dark-mode .work-slider-container {
+    background: #2e4a5e;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+}
+body.dark-mode .slider-scale {
+    color: #ffffff;
+}
+
+body.dark-mode .modal-content strong {
+    color: #ffffff;
+}
+
+body.dark-mode .modal-content p {
+    color: #ffffff;
+}
+
+body.dark-mode .results-container {
+    background-color: transparent;
+}
+
+body.dark-mode .event-cards-scroll {
+    background-color: #1a3a52;
+    border: 2px solid #FFC845;
+}
+
+body.dark-mode .event-card {
+    background-color: #2e4a5e;
+    color: #ffffff;
+    border: 1px solid #2e4a5e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .event-card.expanded {
+    background-color: #0d2438; 
+    color: #ffffff;
+    border: 1px solid #FFC845;
+}
+
+body.dark-mode .event-card.expanded .back-button {
+    background-color: #4db8d8;
+    color: #0d2438;
+    border: 1px solid #4db8d8;
+}
+
+body.dark-mode .event-card.expanded .back-button:hover {
+    background-color: #3aa6c9;
 }

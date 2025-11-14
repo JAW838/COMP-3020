@@ -16,6 +16,10 @@
             width: 100%;
             overflow-x: auto;
         }
+        body.dark-mode .events-table-container {
+            background: #1a3a52;
+            border: 2px solid #FFC845;
+        }
 
         .events-table {
             width: 100%;
@@ -102,56 +106,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="event-name-col">Lunch</td>
-                                <td class="event-location-col">University Centre</td>
-                                <td class="event-time-col">12:30 PM</td>
-                                <td class="event-date-col">10/04/2025</td>
-                            </tr>
-                            <tr>
-                                <td class="event-name-col">Chess Club</td>
-                                <td class="event-location-col">VW Social Club</td>
-                                <td class="event-time-col">8:00 PM</td>
-                                <td class="event-date-col">10/02/2025</td>
-                            </tr>
-                            <tr>
-                                <td class="event-name-col">Gym Session</td>
-                                <td class="event-location-col">230 University College</td>
-                                <td class="event-time-col">2:00 PM</td>
-                                <td class="event-date-col">09/22/2025</td>
-                            </tr>
-                            <tr>
-                                <td class="event-name-col">Lunch</td>
-                                <td class="event-location-col">University Centre</td>
-                                <td class="event-time-col">1:00 PM</td>
-                                <td class="event-date-col">09/19/2025</td>
-                            </tr>
-                            <tr>
-                                <td class="event-name-col">Study over Lunch!</td>
-                                <td class="event-location-col">University Centre</td>
-                                <td class="event-time-col">1:30 PM</td>
-                                <td class="event-date-col">09/17/2025</td>
-                            </tr>
-                            <tr>
-                                <td class="event-name-col">Networking Workshop</td>
-                                <td class="event-location-col">Engineering Lounge</td>
-                                <td class="event-time-col">12:30 PM</td>
-                                <td class="event-date-col">09/16/2025</td>
-                            </tr>
-                            <tr>
-                                <td class="event-name-col">Free Breakfast</td>
-                                <td class="event-location-col">Engineering Building</td>
-                                <td class="event-time-col">8:00 AM</td>
-                                <td class="event-date-col">09/15/2025</td>
-                            </tr>
+                            <tbody id="eventsTableBody">
                         </tbody>
                     </table>
-                </div>
-
-                <div class="back-button-container">
-                    <button class="btn-secondary" onclick="window.location.href='index.html'">
-                        Back to Home
-                    </button>
                 </div>
             </main>
 
@@ -159,7 +116,154 @@
             </footer>
     </div>
 
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <img id="modal-image" src="" alt="" class="modal-event-image">
+            <h2 id="modal-title"></h2>
+            <p><strong id="modal-status"></strong></p>
+            <p><strong>Date & Time:</strong> <span id="modal-time"></span></p>
+            <p><strong>Place:</strong> <span id="modal-place"></span></p>
+            <p><strong>Description:</strong></p>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
     <script>
+        const pastEventData = [
+            {
+                "id": 1,
+                "title": "Lunch",
+                "place": "University Centre",
+                "time": "2025-04-10T12:30:00",
+                "description": "A casual meet-up for lunch at the University Centre food court. Great way to catch up with friends or meet new people!",
+                "userSubmitted": false, 
+                "image": null
+            },
+            {
+                "id": 2,
+                "title": "Chess Club",
+                "place": "VW Social Club",
+                "time": "2025-04-10T20:00:00",
+                "description": "Weekly chess club meeting. All skill levels welcome. We have boards and clocks ready. Bring your sharpest mind!",
+                "userSubmitted": true, 
+                "image": null
+            },
+            {
+                "id": 3,
+                "title": "Gym Session",
+                "place": "230 University College",
+                "time": "2025-09-22T14:00:00",
+                "description": "A general gym session focused on strength training and conditioning. Join us for a quick workout.",
+                "userSubmitted": false,
+                "image": null
+            },
+            {
+                "id": 4,
+                "title": "Lunch",
+                "place": "University Centre",
+                "time": "2025-09-19T13:00:00",
+                "description": "Quick lunchtime meeting to discuss upcoming student projects. Bring your own food.",
+                "userSubmitted": true,
+                "image": null
+            },
+            {
+                "id": 5,
+                "title": "Study over Lunch!",
+                "place": "University Centre", 
+                "time": "2025-09-17T13:30:00",
+                "description": "Bring your books and your lunch! We're dedicating this time to silent, focused study together.",
+                "userSubmitted": true,
+                "image": null
+            },
+            {
+                "id": 6,
+                "title": "Networking Workshop",
+                "place": "Engineering Lounge",
+                "time": "2025-09-16T12:30:00",
+                "description": "Professional workshop on networking skills. Learn how to connect with industry professionals.",
+                "userSubmitted": false,
+                "image": null
+            },
+            {
+                "id": 7,
+                "title": "Free Breakfast",
+                "place": "Engineering Building",
+                "time": "2025-09-15T08:00:00",
+                "description": "Start your day right with a free breakfast provided by the Engineering Students' Association!",
+                "userSubmitted": false,
+                "image": null
+            }
+        ];
+
+        function renderEventsTable(events) {
+            const tableBody = document.getElementById("eventsTableBody");
+            tableBody.innerHTML = "";
+
+            events.forEach(event => {
+                const row = document.createElement("tr");
+                row.dataset.eventId = event.id;
+                
+                row.innerHTML = `
+                    <td class="event-name-col">${event.title}</td>
+                    <td class="event-location-col">${event.place}</td>
+                    <td class="event-time-col">${new Date(event.time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</td>
+                    <td class="event-date-col">${new Date(event.time).toLocaleDateString()}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function renderEventsTable(events) {
+            const tableBody = document.getElementById("eventsTableBody");
+            tableBody.innerHTML = "";
+
+            events.forEach(event => {
+                const row = document.createElement("tr");
+                row.dataset.eventId = event.id;
+                row.innerHTML = `
+                    <td class="event-name-col">${event.title}</td>
+                    <td class="event-location-col">${event.place}</td>
+                    <td class="event-time-col">${new Date(event.time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</td>
+                    <td class="event-date-col">${new Date(event.time).toLocaleDateString()}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function showEventDetails(event) {
+            const modal = document.getElementById('eventModal');
+            const modalTime = document.getElementById('modal-time');
+            const modalPlace = document.getElementById('modal-place');
+            const modalDescription = document.getElementById('modal-description');
+            const modalImage = document.getElementById('modal-image');
+            const modalStatus = document.getElementById('modal-status');
+
+            const isUserSubmitted = event.userSubmitted;
+            const statusText = isUserSubmitted ? "Community Event" : "Official Event";
+
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            let statusColor;
+
+            if (isUserSubmitted) {
+                statusColor = isDarkMode ? "#ff6961" : "red";
+            } else {
+                statusColor = isDarkMode ? "#4db8d8" : "#006eb5";
+            }
+
+            modalTime.textContent = new Date(event.time).toLocaleString();
+            modalPlace.textContent = event.place;
+            modalDescription.textContent = event.description;
+            modalImage.src = event.image || 'path/to/default/placeholder.png'; 
+            modalImage.alt = event.title;
+            modalStatus.textContent = statusText;
+            modalStatus.style.color = statusColor;
+            modalStatus.style.fontSize = "1.1rem";
+            modalStatus.style.fontWeight = "bold";
+
+            modal.style.display = 'block';
+        }
+
         const profileButton = document.getElementById('profileButton');
         const dropdownMenu = document.getElementById('dropdownMenu');
 
@@ -182,6 +286,10 @@
             document.body.classList.add('dark-mode');
             themeSwitch.checked = true;
         }
+        else {
+            document.body.classList.remove('dark-mode');
+            themeSwitch.checked = false;
+        }
         themeSwitch.addEventListener('change', function() {
             if (this.checked) {
                 document.body.classList.add('dark-mode');
@@ -201,7 +309,38 @@
             <span class="breadcrumb-current">Past Events</span>`;
             }
         }
-        renderBreadcrumbs();
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            const eventTableBody = document.getElementById('eventsTableBody');
+            const modal = document.getElementById('eventModal');
+            const closeButton = document.querySelector('.close-button');
+
+            renderEventsTable(pastEventData);
+            renderBreadcrumbs();
+
+            eventTableBody.addEventListener('click', function(e) {
+                let item = e.target.closest('tr');
+                
+                if (item && item.dataset.eventId) {
+                    const eventId = parseInt(item.dataset.eventId);
+                    const event = pastEventData.find(e => e.id === eventId);
+                    
+                    if (event) {
+                        showEventDetails(event);
+                    }
+                }
+            });
+
+            closeButton.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        });
     </script>
 </body>
 
