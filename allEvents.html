@@ -69,6 +69,21 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
+        // --- Header scripts (unmodified) ---
+        const profileButton = document.getElementById('profileButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        // Toggle dropdown menu
+        profileButton.addEventListener('click', function (e) {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!profileButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
         // --- Events --- (Ended up hardcoding these in since it was annoying trying to get the JSON file to load!)
         const eventData = [
             {
@@ -300,20 +315,7 @@
             }, 50);
         });
 
-        // --- Header scripts (unmodified) ---
-        const profileButton = document.getElementById('profileButton');
-        const dropdownMenu = document.getElementById('dropdownMenu');
 
-        profileButton.addEventListener('click', function (e) {
-            e.stopPropagation();
-            dropdownMenu.classList.toggle('`');
-        });
-
-        document.addEventListener('click', function (e) {
-            if (!profileButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.classList.remove('show');
-            }
-        });
 
         // Dark Mode Toggle
         const themeSwitch = document.getElementById('theme-switch');

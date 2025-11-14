@@ -1449,11 +1449,6 @@ body.dark-mode .results-container {
     color: #ffffff;
 }
 
-body.dark-mode .event-card {
-    background: #0d2438;
-    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
-}
-
 body.dark-mode .event-name {
     color: #FFC845;
 }
@@ -1632,6 +1627,18 @@ body.dark-mode .event-card.expanded .back-button {
     color: #0d2438;
     border: 1px solid #4db8d8;
 }
+
+body.dark-mode .event-card .event-banner {
+    background-color: #0d2438;
+    color: #ffffff;
+}
+
+body.dark-mode .event-card:hover {
+    background-color: #0d2438;
+    border: 1px solid #FFC845; 
+    box-shadow: 0 0 15px rgba(255, 200, 69, 0.5); 
+}
+
 
 body.dark-mode .event-card.expanded .back-button:hover {
     background-color: #3aa6c9;
