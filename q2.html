@@ -35,26 +35,45 @@
 
         .social-scale {
             display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-top: 30px;
-            margin-bottom: 40px;
+            justify-content: center; /* horizontally center items */
+            align-items: center;     /* vertically center items */
+            gap: 90px;
+            border: 1px solid #ddd;
+            background-color: white;
+            width: 600px;
+            height: 400px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+            margin: 0 auto; /* centers the whole box */
         }
 
         .emoji-group {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
 
         .emoji-btn {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 2.8rem;
             background: none;
-            border: 2px solid transparent;
+            border: 3px solid transparent;
             border-radius: 50%;
             cursor: pointer;
             transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
             padding: 10px;
+        }
+
+        .emoji-btn img {
+        width: 165px;
+        height: auto;
+        object-fit: fill;
         }
 
         .emoji-btn:hover {
@@ -72,7 +91,8 @@
         }
 
         .emoji-label {
-            margin-top: 8px;
+            color: black;
+            margin-top: 15px;
             font-weight: 500;
             font-size: 1rem;
         }
@@ -131,15 +151,23 @@
 
                 <div class="social-scale">
                     <div class="emoji-group">
-                        <button class="emoji-btn" data-value="not_social" title="Not social">😞</button>
+                        <button class="emoji-btn" data-value="not_social" title="Not social">
+                            <img src="q2Photos/Not Social.png" alt="Not Social">
+                        </button>
                         <div class="emoji-label">Not Social</div>
                     </div>
+
                     <div class="emoji-group">
-                        <button class="emoji-btn" data-value="neutral" title="Neutral">😐</button>
+                        <button class="emoji-btn" data-value="neutral" title="Neutral">
+                            <img src="q2Photos/Neutral.png" alt="Neutral">
+                        </button>
                         <div class="emoji-label">Neutral</div>
                     </div>
+
                     <div class="emoji-group">
-                        <button class="emoji-btn" data-value="social" title="Social">😄</button>
+                        <button class="emoji-btn" data-value="social" title="Social">
+                            <img src="q2Photos/Social.png" alt="Social">
+                        </button>
                         <div class="emoji-label">Social</div>
                     </div>
                 </div>
