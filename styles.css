@@ -809,6 +809,21 @@ body {
   transform: translateY(-1px);
 }
 
+.chosen-limit {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  text-align: center;
+  color: #666;
+}
+
+.no-selected {
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.5); /* ~50% opacity */
+  padding-top: 8px;
+}
+
+
 /* ===== WORK SLIDER (Q4 - How Much Work) ===== */
 
 /* === Q4 carousel (3 images: left/center/right) === */
