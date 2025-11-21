@@ -706,22 +706,6 @@ body {
         transform 0.1s ease;
 }
 
-/* Hover state. */
-.time-slot label:hover {
-    background-color: #f0f7ff;
-    border-color: #006eb5;
-    box-shadow: 0 3px 8px rgba(0, 110, 181, 0.18);
-    transform: translateY(-1px);
-}
-
-/* Selected pill styling. */
-.time-slot input[type="radio"]:checked+label {
-    background-color: #006eb5;
-    color: #ffffff;
-    border-color: #005493;
-    box-shadow: 0 4px 10px rgba(0, 110, 181, 0.35);
-    transform: translateY(-1px);
-}
 
 /* Custom time row spanning the full width. */
 .custom-time-slot {
@@ -786,9 +770,8 @@ body {
 /* Hover effect. */
 #custom-time-pill:hover {
     background-color: #f0f7ff;
-    border-color: #006eb5;
     box-shadow: 0 3px 8px rgba(0, 110, 181, 0.18);
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.02);
 }
 
 /* Selected highlight. */
@@ -797,7 +780,7 @@ body {
     color: #ffffff;
     border-color: #005493;
     box-shadow: 0 4px 10px rgba(0, 110, 181, 0.35);
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.03);
 }
 
 .chosen-limit {

@@ -67,9 +67,12 @@
 
     .time-slot label:hover {
       background-color: #f0f7ff;
-      border-color: #006eb5;
-      box-shadow: 0 3px 8px rgba(0, 110, 181, 0.18);
-      transform: translateY(-1px);
+      transform: translateY(-1px) scale(1.05);
+    }
+
+    body.dark-mode .time-slot label:hover{
+      background-color: #b7bdc2;
+      border-color: #b7bdc2;
     }
 
     /* Selected pill (normal + custom) */
@@ -78,7 +81,7 @@
       color: black;
       border-color: #005493;
       box-shadow: 0 4px 10px rgba(0, 110, 181, 0.35);
-      transform: translateY(-1px);
+      transform: translateY(-1px) scale(1.1);
     }
 
     /* Custom time row spans full width */
